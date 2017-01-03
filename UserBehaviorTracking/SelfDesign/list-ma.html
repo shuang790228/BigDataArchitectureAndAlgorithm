@@ -1,0 +1,123 @@
+
+<!DOCTYPE HTML><html lang="en"><head>
+<meta charset="UTF-8">
+
+<style type="text/css">
+#menu ul {margin:0 auto; padding:0; list-style:none; width:800px;}
+#menu ul li {background:#dddddd; height:37px; width:164px; text-align:center; border-bottom:2px solid #ccc; 
+float:left; margin-right:10px; line-height:37px}
+#menu ul li ul {display:none; width=164px;}
+
+#menu ul li ul li {float:none; width=164px; margin:0; background:#eeeeee}
+#menu ul li.listshow ul {display:block}
+
+#menu ul li a {color:#000; text-decoration:none; display:block; width:164px; height:37px;}
+#menu ul li a:hover {background-color:#FFA54F;}
+#menu ul li ul li a:hover {background:#000000;color:#ffffff}
+#menu ul li a#on {background-color:#FF7F00;}
+.clear {clear:both;}
+</style>
+
+
+
+<script>
+	function getContextPath() {
+		var localObj = window.location;
+
+		var contextPath = localObj.pathname.split("/")[1];
+
+		var basePath = localObj.protocol+"//"+localObj.host+"/"+contextPath;
+
+		var server_context=basePath;
+		
+		return server_context;
+	}
+
+	function menuFix() {
+		var elements = document.getElementById("menu").getElementsByTagName("li");
+		for (var i = 0; i < elements.length; i++) {
+			
+			elements[i].onmouseover = function() {
+				this.className += (this.className.length > 0 ? " ":"") + "listshow";
+			}
+			elements[i].onmouseout = function() {
+				this.className = this.className.replace("listshow", "");
+			}
+			
+			
+		}
+		
+		// Start: Self-designed tracking code for page loading
+		var contextPath = getContextPath();
+		var img = new Image();
+    	img.src = contextPath + "/click?loadpage=true";
+		// End: Self-designed tracking code for page loading
+		
+	}
+	window.onload = menuFix;
+	
+	// Start: Self-designed tracking code for click
+	function sendMyAnalytics(e) {
+		
+		var category = e.getAttribute("data-gaCategory");
+		var action = e.getAttribute("data-gaAction");
+		var label = e.getAttribute("data-gaLabel");
+		var value = e.getAttribute("data-gaValue");
+		
+		var contextPath = getContextPath();
+		var img = new Image();
+    	img.src = contextPath + "/click?category=" 
+    			+ category + '&action=' + action + '&label=' + label + "&value=" + value
+    			+ "&timestamp=" + (new Date()).valueOf();
+		
+	}
+	// End: Self-designed tracking code for click
+	
+</script>
+
+<title>Collect Your Behavior</title>
+</head>
+
+<body>
+<p>
+<h3>Please Choose Category (on MacBook2013)</h3>
+<p></p>
+
+
+<div id="menu">
+	<ul>
+		<li><a href="#">Women's Clothing</a>
+			<ul>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Women's Clothing Clicked" data-gaLabel="Dresses" data-gaValue="100" onclick="sendMyAnalytics(this)">Dresses $100.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Women's Clothing Clicked" data-gaLabel="Coats" data-gaValue="50" onclick="sendMyAnalytics(this)">Coats $50.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Women's Clothing Clicked" data-gaLabel="Sweaters" data-gaValue="25" onclick="sendMyAnalytics(this)">Sweaters $25.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Women's Clothing Clicked" data-gaLabel="Jeans" data-gaValue="28" onclick="sendMyAnalytics(this)">Jeans $28.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Women's Clothing Clicked" data-gaLabel="Shorts" data-gaValue="15" onclick="sendMyAnalytics(this)">Shorts $15.00</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Men's Clothing</a>
+			<ul>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Men's Clothing Clicked" data-gaLabel="Casual Shirts" data-gaValue="36" onclick="sendMyAnalytics(this)">Casual Shirts $36.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Men's Clothing Clicked" data-gaLabel="T-Shirts" data-gaValue="12" onclick="sendMyAnalytics(this)">T-Shirts $12.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Men's Clothing Clicked" data-gaLabel="Sport Coats" data-gaValue="58" onclick="sendMyAnalytics(this)">Sport Coats $58.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Men's Clothing Clicked" data-gaLabel="Jeans" data-gaValue="25" onclick="sendMyAnalytics(this)">Jeans $25.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Men's Clothing Clicked" data-gaLabel="Pants" data-gaValue="35" onclick="sendMyAnalytics(this)">Pants $35.00</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Kids' Clothing & Shoes</a>
+			<ul>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Kids' Clothing & Shoes Clicked" data-gaLabel="Girls' Clothing" data-gaValue="65" onclick="sendMyAnalytics(this)">Girls' Clothing $65.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Kids' Clothing & Shoes Clicked" data-gaLabel="Boys' Clothing" data-gaValue="20" onclick="sendMyAnalytics(this)">Boys' Clothing $20.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Kids' Clothing & Shoes Clicked" data-gaLabel="Girls' Shoes" data-gaValue="40" onclick="sendMyAnalytics(this)">Girls' Shoes $40.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Kids' Clothing & Shoes Clicked" data-gaLabel="Boys' Shoes" data-gaValue="26" onclick="sendMyAnalytics(this)">Boys' Shoes $26.00</a></li>
+				<li><a href="#" data-gaCategory="Main Catalog" data-gaAction="Kids' Clothing & Shoes Clicked" data-gaLabel="Unisex Accessories" data-gaValue="8" onclick="sendMyAnalytics(this)">Accessories $8.00</a></li>
+			</ul>
+		</li>
+		<div class="clear"></div>
+	</ul>
+</div>
+
+</body>
+
+
+</html>

@@ -149,8 +149,8 @@ public class IKAnalzyerForListing {
 	
 	public static void main(String[] args){
 		
-		processListing("/Users/shenhuan/Coding/data/BigDataArchitectureAndAlgorithm/listing.txt",
-				"/Users/shenhuan/Coding/data/BigDataArchitectureAndAlgorithm/listing-segmented.txt");
+		processListing("/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing.txt",
+				"/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing-segmented.txt");
 	    
 	}
 

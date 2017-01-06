@@ -1,0 +1,5 @@
+org.wltea.analyzer.cfg
+org.wltea.analyzer.core
+org.wltea.analyzer.dic
+org.wltea.analyzer.lucene
+org.wltea.analyzer.sample

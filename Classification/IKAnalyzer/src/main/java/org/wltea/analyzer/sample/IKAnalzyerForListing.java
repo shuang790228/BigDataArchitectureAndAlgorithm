@@ -31,6 +31,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -65,7 +71,8 @@ public class IKAnalzyerForListing {
 			br = new BufferedReader(new FileReader(inputFileName));
 			pw = new PrintWriter(new FileWriter(outputFileName));
 			
-			String strLine = null;
+			String strLine = br.readLine();		//跳过header这行
+			pw.println(strLine);
 			while ((strLine = br.readLine()) != null) {
 				
 				//获取每个字段
@@ -117,6 +124,80 @@ public class IKAnalzyerForListing {
 		
 	}
 	
+	public static void processListingWithShuffle(String inputFileName, String outputFileName) {
+		
+		try {
+			
+			br = new BufferedReader(new FileReader(inputFileName));
+			pw = new PrintWriter(new FileWriter(outputFileName));
+			
+			ArrayList<String> samples = new ArrayList<String>();
+			
+			String strLine = br.readLine();		//跳过header这行
+			pw.println(strLine);
+			while ((strLine = br.readLine()) != null) {
+				
+				//获取每个字段
+				String[] tokens = strLine.split("\t");
+				String id = tokens[0];
+				String title = tokens[1];
+				String cateId = tokens[2];
+				String cateName = tokens[3];
+			
+				//对原有商品标题进行中文分词
+				ts = analyzer.tokenStream("myfield", new StringReader(title));
+				//获取词元位置属性
+//			    OffsetAttribute  offset = ts.addAttribute(OffsetAttribute.class); 
+			    //获取词元文本属性
+			    CharTermAttribute term = ts.addAttribute(CharTermAttribute.class);
+			    //获取词元文本属性
+//			    TypeAttribute type = ts.addAttribute(TypeAttribute.class);
+			    
+			    
+			    //重置TokenStream（重置StringReader）
+				ts.reset(); 
+				//迭代获取分词结果
+				StringBuffer sbSegmentedTitle = new StringBuffer();
+				while (ts.incrementToken()) {
+				  sbSegmentedTitle.append(term.toString()).append(" ");
+				 
+				
+				}
+				
+				
+				samples.add(String.format("%s\t%s\t%s\t%s", id, sbSegmentedTitle.toString().trim(), cateId, cateName));
+				
+				//关闭TokenStream（关闭StringReader）
+				ts.end();   // Perform end-of-stream operations, e.g. set the final offset.
+				
+			}
+			br.close();
+			br = null;
+					
+			
+			Random rand = new Random(System.currentTimeMillis());
+			while (samples.size() > 0) {
+				int index = rand.nextInt(samples.size());
+				pw.println(samples.get(index));
+				samples.remove(index);
+			}
+			
+			
+				
+			
+			pw.close();
+			pw = null;
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cleanup();
+	    }
+		
+		
+	}
+	
 	public static void cleanup() {
 		
 		if (br != null) {
@@ -151,6 +232,9 @@ public class IKAnalzyerForListing {
 		
 		processListing("/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing.txt",
 				"/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing-segmented.txt");
+		
+		processListingWithShuffle("/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing.txt",
+				"/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing-segmented-shuffled.txt");
 	    
 	}
 

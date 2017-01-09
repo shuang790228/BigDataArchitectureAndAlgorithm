@@ -17,7 +17,7 @@ predict.naiveBayes <- function(object,
                 
                   if (dim(object$tables[[v]])[2] < 2) {
                  	 prob<-vector(mode="numeric",length=0)
-					for(i in 1:dim(msd)[1])
+					for(i in 1:dim(object$tables[[v]])[1])
 					{
   						prob[i] <- 0
 					} 

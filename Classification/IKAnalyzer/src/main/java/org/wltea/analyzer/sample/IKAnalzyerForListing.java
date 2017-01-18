@@ -226,6 +226,15 @@ public class IKAnalzyerForListing {
 	      }
 		}
 		
+		if (analyzer != null) {
+			try {
+				analyzer.close();
+				analyzer = null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	public static void main(String[] args){

@@ -739,6 +739,17 @@
        not be initialized until the first request that uses it.
 
     -->
+
+   <!-- 使用DIH导入MySQL中的商品数据 
+   -->
+  <requestHandler name="/dataimport"       class="org.apache.solr.handler.dataimport.DataImportHandler">
+    <lst name="defaults">
+    	<str name="config">solr-data-config.xml</str>
+    </lst>
+  </requestHandler>
+
+    
+    
   <!-- SearchHandler
 
        http://wiki.apache.org/solr/SearchHandler

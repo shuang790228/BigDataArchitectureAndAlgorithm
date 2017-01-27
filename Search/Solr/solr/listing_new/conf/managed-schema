@@ -398,12 +398,16 @@
   <fieldType name="tlong" class="solr.TrieLongField" positionIncrementGap="0" docValues="true" precisionStep="8"/>
   <fieldType name="tlongs" class="solr.TrieLongField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="8"/>
   
+  
+  
   <!-- 处理中文的字段类型text_chinese -->
   <fieldType name="text_chinese" class="solr.TextField">
       <analyzer type="index" class="org.wltea.analyzer.lucene.IKAnalyzer" />
-      <analyzer type="query" class="org.wltea.analyzer.lucene.IKAnalyzer" />
+      <analyzer type="query" >
+        <tokenizer class="org.wltea.analyzer.lucene.IKTokenizerFactory"/>
+      	<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />
+      </analyzer>
   </fieldType>
-  
   
   <field name="_root_" type="string" docValues="false" indexed="true" stored="false"/>
   <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>

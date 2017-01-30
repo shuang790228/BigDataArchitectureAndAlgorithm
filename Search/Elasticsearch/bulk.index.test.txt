@@ -1,0 +1,10 @@
+{ "index" : { "_index" : "temp_index", "_type" : "temp_type" } }
+{ "id" : "-11", "listing_title" : "批量处理1", "category_id" : "-5", "category_name" : "批量处理目录" }
+{ "index" : { "_index" : "temp_index", "_type" : "temp_type" } }
+{ "id" : "-12", "listing_title" : "批量处理2", "category_id" : "-5", "category_name" : "批量处理目录" }
+{ "index" : { "_index" : "temp_index", "_type" : "temp_type" } }
+{ "id" : "-13", "listing_title" : "批量处理3", "category_id" : "-5", "category_name" : "批量处理目录" }
+{ "index" : { "_index" : "temp_index", "_type" : "temp_type" } }
+{ "id" : "-14", "listing_title" : "批量处理4", "category_id" : "-5", "category_name" : "批量处理目录" }
+{ "index" : { "_index" : "temp_index", "_type" : "temp_type" } }
+{ "id" : "-15", "listing_title" : "批量处理5", "category_id" : "-5", "category_name" : "批量处理目录" }

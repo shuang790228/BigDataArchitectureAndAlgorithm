@@ -19,7 +19,7 @@
   
   	<dataSource name="jdbc" driver="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/sys"
-        user="root" password="830728"/>
+        user="root" password="yourownpassword"/>
 
     <document name="o2o_listing">
         <entity name="o2o_listing" 

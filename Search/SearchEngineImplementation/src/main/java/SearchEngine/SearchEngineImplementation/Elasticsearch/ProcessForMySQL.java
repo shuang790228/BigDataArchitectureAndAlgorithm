@@ -48,7 +48,7 @@ public class ProcessForMySQL {
 	            	long category_id = rs.getLong("category_id");
 	            	String category_name = rs.getString("category_name");
 	            	
-	            	String jsonLine2 = String.format("{ \"id\" : \"%d\", \"listing_title\" : \"%s\", \"category_id\" : \"%d\", \"category_name\" : \"%s\" }",
+	            	String jsonLine2 = String.format("{ \"listing_id\" : \"%d\", \"listing_title\" : \"%s\", \"category_id\" : \"%d\", \"category_name\" : \"%s\" }",
 	            			listing_id, listing_title, category_id, category_name);
 	            	
 	            	// 将JSON对象写入输出文件

@@ -30,6 +30,10 @@
         <value>true</value>  
 	</property>  
 	<property>  
+        <name>hbase.zookeeper.quorum</name>  
+        <value>192.168.1.48:2181</value>  
+	</property>
+	<property>  
     	<name>hbase.master.port</name>  
     	<value>16000</value>  
 	</property>  

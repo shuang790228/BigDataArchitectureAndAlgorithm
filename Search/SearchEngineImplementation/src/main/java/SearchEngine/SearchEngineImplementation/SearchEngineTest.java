@@ -111,7 +111,7 @@ public class SearchEngineTest {
 		return results;
 	}
 	
-	public void cleanup() {
+	public static void cleanup() {
 		
 		if (sse != null) {
 			sse.cleanup();
@@ -143,6 +143,7 @@ public class SearchEngineTest {
 		SearchEngineTest.index(documents);	//索引新文档
 		SearchEngineTest.query("西红柿 方便面", 2, 5);	//搜索第2页，每页5项结果
 		
+		SearchEngineTest.cleanup();
 	}
 	
 

@@ -248,7 +248,7 @@ public class HBase {
 			documents.add(ld);
 		}
 		
-		HBase.insertData(documents, "listing_segmented_shuffled_inhbase");
+		HBase.insertData(documents, "listing_segmented_shuffled_inhbase");	// 慎用，每次会写入不同的数据
 		
 		
 		

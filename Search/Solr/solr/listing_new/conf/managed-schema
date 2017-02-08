@@ -402,10 +402,13 @@
   
   <!-- 处理中文的字段类型text_chinese -->
   <fieldType name="text_chinese" class="solr.TextField">
-      <analyzer type="index" class="org.wltea.analyzer.lucene.IKAnalyzer" />
-      <analyzer type="query" >
+      <analyzer type="index" > <!-- 索引阶段 -->
         <tokenizer class="org.wltea.analyzer.lucene.IKTokenizerFactory"/>
       	<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />
+      </analyzer>
+      <analyzer type="query" > <!-- 查询阶段 -->
+        <tokenizer class="org.wltea.analyzer.lucene.IKTokenizerFactory"/>
+      	<!--<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />-->
       </analyzer>
   </fieldType>
   
@@ -490,4 +493,7 @@
   <dynamicField name="*_p" type="location" indexed="true" stored="true"/>
   <dynamicField name="*_c" type="currency" indexed="true" stored="true"/>
   <copyField source="*" dest="_text_"/>
+  
+  <!--<similarity class="SearchEngine.SearchEngineImplementation.Solr.ListingSimilarity"/>-->
+  
 </schema>

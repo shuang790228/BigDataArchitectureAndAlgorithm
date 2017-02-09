@@ -17,7 +17,7 @@ import SearchEngine.SearchEngineImplementation.SearchEngineBasicInterface;
 
 public class SolrSearchEngineBasic implements SearchEngineBasicInterface{
 	
-	private CloudSolrClient solrClient = null;
+	protected CloudSolrClient solrClient = null;
 	
 	public SolrSearchEngineBasic(Map<String, Object> serverParams) {
 		
@@ -131,6 +131,7 @@ public class SolrSearchEngineBasic implements SearchEngineBasicInterface{
 			// 获取查询结果
 			response = solrClient.query(sq);
 //			SolrDocumentList list = response.getResults();
+//			。。。这里略去后续统一文档拼装的实现。。。
 			
 			
 		} catch (Exception ex) {

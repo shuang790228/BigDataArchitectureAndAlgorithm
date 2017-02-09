@@ -21,7 +21,7 @@ import SearchEngine.SearchEngineImplementation.SearchEngineBasicInterface;
 
 public class ElasticSearchEngineBasic implements SearchEngineBasicInterface{
 	
-	private TransportClient esClient = null;
+	protected TransportClient esClient = null;
 	
 	public ElasticSearchEngineBasic(Map<String, Object> serverParams) {
 		
@@ -123,6 +123,9 @@ public class ElasticSearchEngineBasic implements SearchEngineBasicInterface{
 					.setQuery(qb)
 					.setFrom(from).setSize(size)
 					.get();  
+			
+//			。。。这里略去后续统一文档拼装的实现。。。
+
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

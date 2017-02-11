@@ -13,8 +13,8 @@ import SearchEngine.SearchEngineImplementation.SearchEngineBasicInterface;
 
 public class SolrSearchEngineRelevant implements SearchEngineBasicInterface{
 	
-	private SolrSearchEngineBasic sseb = null;
-	private NBQueryClassifierOnlineForSearch nbqcsearch = null;
+	protected SolrSearchEngineBasic sseb = null;
+	protected NBQueryClassifierOnlineForSearch nbqcsearch = null;
 	
 	public SolrSearchEngineRelevant(SolrSearchEngineBasic sseb) {
 		

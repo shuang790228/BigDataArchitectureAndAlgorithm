@@ -253,7 +253,7 @@ public class NBQueryClassifierOnlineForSearch {
 	        }
 //	        System.out.println("基于上述两者的预测为：" + combinedClassification);
 	        
-	        System.out.println(String.format("根据商品标题文本和用户行为，最终预测的分类为：%s", bestCategory));
+//	        System.out.println(String.format("根据商品标题文本和用户行为，最终预测的分类为：%s", bestCategory));
 //	        System.out.println();
     	} catch (Exception e) {
     		e.printStackTrace();

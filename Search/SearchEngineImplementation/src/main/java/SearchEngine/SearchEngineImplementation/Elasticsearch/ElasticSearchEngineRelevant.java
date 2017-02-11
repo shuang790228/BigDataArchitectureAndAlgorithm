@@ -15,8 +15,8 @@ import SearchEngine.SearchEngineImplementation.SearchEngineBasicInterface;
 
 public class ElasticSearchEngineRelevant implements SearchEngineBasicInterface{
 	
-	private ElasticSearchEngineBasic eseb = null;
-	private NBQueryClassifierOnlineForSearch nbqcsearch = null; 
+	protected ElasticSearchEngineBasic eseb = null;
+	protected NBQueryClassifierOnlineForSearch nbqcsearch = null; 
 	
 	public ElasticSearchEngineRelevant(ElasticSearchEngineBasic eseb) {
 		

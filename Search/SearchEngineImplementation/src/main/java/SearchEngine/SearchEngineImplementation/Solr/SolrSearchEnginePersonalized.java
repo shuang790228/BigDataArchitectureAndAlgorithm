@@ -116,8 +116,6 @@ public class SolrSearchEnginePersonalized implements SearchEnginePersonalizedInt
 				}
 			}
 			
-			
-			
 			// 之前的装饰部分：通过查询分类的结果，优化相关性。相关性仍然是最基本的，要保持较高的boost分值
 			// 如下这行可以使用RESTful API或者服务化模块代替，这样模块间耦合度更低
 			HashMap<String, Double> queryClassificationResults 

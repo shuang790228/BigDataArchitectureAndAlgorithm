@@ -87,7 +87,7 @@ public class SolrSearchEngineRelevant implements SearchEngineBasicInterface{
 			// 新增的装饰部分：通过查询分类的结果，优化相关性
 			// 如下这行可以使用RESTful API或者服务化模块代替，这样模块间耦合度更低
 			HashMap<String, Double> queryClassificationResults 
-				= (HashMap<String, Double>) nbqcsearch.predict(query);
+				= (HashMap<String, Double>) nbqcsearch.predict(query.replaceAll("\\s+", ""));
 			
 			for (String cate : queryClassificationResults.keySet()) {
 				double score = queryClassificationResults.get(cate);
@@ -130,7 +130,7 @@ public class SolrSearchEngineRelevant implements SearchEngineBasicInterface{
 		
 		Map<String, Object> queryParams = new HashMap<>();
 		// 查询关键词
-		queryParams.put("query", "巧克力牛奶");
+		queryParams.put("query", "巧克力 牛奶");
 		queryParams.put("fields", 
 				new String[] {"listing_title"});
 		queryParams.put("start", 0);	// 从第1条结果记录开始

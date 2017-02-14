@@ -916,93 +916,66 @@
        always be executed after the "last-components" 
        
      -->
+     
+     
+     
+	<!-- 搜索建议（Suggest）的配置 -->  
+	<!-- “建议”组件的配置 -->
+    <searchComponent name="suggest" class="solr.SuggestComponent">  
+        <str name="queryAnalyzerFieldType">text_chinese</str>  <!-- 使用schema文件中配置的IK分词字段类型 --> 
+        <lst name="suggester">  
+            <str name="name">listingSuggester</str>  
+            <str name="lookupImpl">FuzzyLookupFactory</str> <!-- 模糊查询，其他选项参见官网的介绍 --> 
+            <str name="suggestAnalyzerFieldType">string</str>
+            <str name="field">listing_title</str>  <!-- 创建“建议”的数据源字段，必须是存储的字段 store="true" --> 
+            <str name="buildOnCommit">true</str>  <!-- 索引更新提交后，重建suggester的数据结构 -->
+        </lst>  
+    </searchComponent>  
+  
+  	<!-- “建议”请求的配置 -->
+    <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">  
+        <lst name="defaults">  
+            <str name="suggest">true</str>  
+            <str name="suggest.dictionary">listingSuggester</str> <!-- 指向上面定义的suggester -->
+            <str name="suggest.count">10</str>  <!-- 返回“建议”的数量 -->
+        </lst>  
+        <arr name="components">  
+            <str>suggest</str>  <!-- 绑定suggest组件和/suggest请求处理器 -->
+        </arr>  
+    </requestHandler>  
 
-  <!-- Spell Check
 
-       The spell check component can return a list of alternative spelling
-       suggestions.  
 
-       http://wiki.apache.org/solr/SpellCheckComponent
-    -->
+  <!-- 拼写纠错（Spell Check）的配置 -->
+  <!-- “纠错”组件的配置 -->
   <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
-
-    <str name="queryAnalyzerFieldType">text_general</str>
-
-    <!-- Multiple "Spell Checkers" can be declared and used by this
-         component
-      -->
-
-    <!-- a spellchecker built from a field of the main index -->
+    <str name="queryAnalyzerFieldType">text_chinese</str>
     <lst name="spellchecker">
-      <str name="name">default</str>
-      <str name="field">_text_</str>
+      <str name="name">listingSpellchecker</str>
+      <str name="field">listing_title</str>  <!-- 创建“纠错”的数据源字段，必须是存储的字段 store="true" --> 
       <str name="classname">solr.DirectSolrSpellChecker</str>
-      <!-- the spellcheck distance measure used, the default is the internal levenshtein -->
-      <str name="distanceMeasure">internal</str>
-      <!-- minimum accuracy needed to be considered a valid spellcheck suggestion -->
-      <float name="accuracy">0.5</float>
-      <!-- the maximum #edits we consider when enumerating terms: can be 1 or 2 -->
-      <int name="maxEdits">2</int>
-      <!-- the minimum shared prefix when enumerating terms -->
-      <int name="minPrefix">1</int>
-      <!-- maximum number of inspections per result. -->
-      <int name="maxInspections">5</int>
-      <!-- minimum length of a query term to be considered for correction -->
-      <int name="minQueryLength">4</int>
-      <!-- maximum threshold of documents a query term can appear to be considered for correction -->
-      <float name="maxQueryFrequency">0.01</float>
-      <!-- uncomment this to require suggestions to occur in 1% of the documents
-        <float name="thresholdTokenFrequency">.01</float>
-      -->
+      <str name="distanceMeasure">internal</str> <!-- 使用默认的编辑距离衡量是否错拼 -->
+      <float name="accuracy">0.5</float> <!-- 作为纠错建议的最小距离阈值 -->
+      <int name="maxEdits">2</int> <!-- 允许的最大单词编辑次数，1或2 -->
+      <int name="minPrefix">1</int> <!-- 允许的最小前缀单词数 -->
     </lst>
-
-    <!-- a spellchecker that can break or combine words.  See "/spell" handler below for usage -->
-    <!--
-    <lst name="spellchecker">
-      <str name="name">wordbreak</str>
-      <str name="classname">solr.WordBreakSolrSpellChecker</str>
-      <str name="field">name</str>
-      <str name="combineWords">true</str>
-      <str name="breakWords">true</str>
-      <int name="maxChanges">10</int>
-    </lst>
-    -->
   </searchComponent>
 
-  <!-- A request handler for demonstrating the spellcheck component.  
-
-       NOTE: This is purely as an example.  The whole purpose of the
-       SpellCheckComponent is to hook it into the request handler that
-       handles your normal user queries so that a separate request is
-       not needed to get suggestions.
-
-       IN OTHER WORDS, THERE IS REALLY GOOD CHANCE THE SETUP BELOW IS
-       NOT WHAT YOU WANT FOR YOUR PRODUCTION SYSTEM!
-       
-       See http://wiki.apache.org/solr/SpellCheckComponent for details
-       on the request parameters.
-    -->
+  <!-- “纠错”请求的配置 -->
   <requestHandler name="/spell" class="solr.SearchHandler" startup="lazy">
     <lst name="defaults">
-      <!-- Solr will use suggestions from both the 'default' spellchecker
-           and from the 'wordbreak' spellchecker and combine them.
-           collations (re-written queries) can include a combination of
-           corrections from both spellcheckers -->
-      <str name="spellcheck.dictionary">default</str>
-      <str name="spellcheck">on</str>
-      <str name="spellcheck.extendedResults">true</str>
-      <str name="spellcheck.count">10</str>
-      <str name="spellcheck.alternativeTermCount">5</str>
-      <str name="spellcheck.maxResultsForSuggest">5</str>
-      <str name="spellcheck.collate">true</str>
-      <str name="spellcheck.collateExtendedResults">true</str>
-      <str name="spellcheck.maxCollationTries">10</str>
-      <str name="spellcheck.maxCollations">5</str>
+      <str name="spellcheck.dictionary">listingSpellchecker</str>  <!-- 指向上面定义的spellchecker -->
+      <str name="spellcheck">true</str>
+      <str name="spellcheck.count">10</str>   <!-- 返回“纠错”的数量 -->
     </lst>
     <arr name="last-components">
-      <str>spellcheck</str>
+      <str>spellcheck</str>  <!-- 绑定spellcheck组件和/spell请求处理器 -->
     </arr>
   </requestHandler>
+  
+  
+  
+    
 
   <!-- Term Vector Component
 

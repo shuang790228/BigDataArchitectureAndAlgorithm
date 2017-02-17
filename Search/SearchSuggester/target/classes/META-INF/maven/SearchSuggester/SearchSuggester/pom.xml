@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>SearchSuggester</groupId>
+  <artifactId>SearchSuggester</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  	<!-- Mahout的依赖Jar包 -->
+	<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+	<dependency>
+	    <groupId>org.apache.mahout</groupId>
+	    <artifactId>mahout-core</artifactId>
+	    <version>0.9</version>
+	</dependency>
+	
+  	<!-- IKAnalyzer的依赖Jar包 -->
+	<dependency>
+	    <groupId>com.janeluo</groupId>
+	    <artifactId>ikanalyzer</artifactId>
+	    <version>2012_u6</version>
+	</dependency>
+
+	<!-- 汉字转拼音的依赖Jar包 -->	
+	<dependency>
+		<groupId>com.belerweb</groupId>
+		<artifactId>pinyin4j</artifactId>
+		<version>2.5.0</version>
+	</dependency>
+	
+	<!-- JSON处理的依赖Jar包 -->
+	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.7.5</version>
+	</dependency>
+	
+  </dependencies>
+	
+	
+</project>

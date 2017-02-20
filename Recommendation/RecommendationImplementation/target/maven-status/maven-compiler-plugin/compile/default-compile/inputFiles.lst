@@ -1,1 +1,6 @@
-/Users/huangsean/Coding/eclipse-jee-neon/workspace/Recommendation/src/main/java/Recommendation/RecommendationImplementation/RedisBased.java
+/Users/huangsean/Coding/eclipse-jee-neon/workspace/RecommendationImplementation/src/main/java/SearchEngine/SearchEngineImplementation/SearchEngineBasicInterface.java
+/Users/huangsean/Coding/eclipse-jee-neon/workspace/RecommendationImplementation/src/main/java/SearchEngine/SearchEngineImplementation/ListingDocument.java
+/Users/huangsean/Coding/eclipse-jee-neon/workspace/RecommendationImplementation/src/main/java/Recommendation/RecommendationImplementation/RedisBased.java
+/Users/huangsean/Coding/eclipse-jee-neon/workspace/RecommendationImplementation/src/main/java/SearchEngine/SearchEngineImplementation/Elasticsearch/ElasticSearchEngineBasic.java
+/Users/huangsean/Coding/eclipse-jee-neon/workspace/RecommendationImplementation/src/main/java/Recommendation/RecommendationImplementation/ElasticsearchBasedKNN.java
+/Users/huangsean/Coding/eclipse-jee-neon/workspace/RecommendationImplementation/src/main/java/SearchEngine/SearchEngineImplementation/SearchEnginePersonalizedInterface.java

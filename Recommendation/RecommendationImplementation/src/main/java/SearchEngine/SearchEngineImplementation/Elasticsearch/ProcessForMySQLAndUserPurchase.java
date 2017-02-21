@@ -134,7 +134,7 @@ public class ProcessForMySQLAndUserPurchase {
 		
 		ProcessForMySQLAndUserPurchase pfmysql = new ProcessForMySQLAndUserPurchase();
 		// MySQL JDBC URL：jdbc:mysql://主机名称：连接端口/数据库的名称?参数=值
-        String sqlConnectionUrl = "jdbc:mysql://localhost:3306/sys?user=root&password=830728&useUnicode=true&characterEncoding=UTF8";
+        String sqlConnectionUrl = "jdbc:mysql://localhost:3306/sys?user=root&password=yourownpassword&useUnicode=true&characterEncoding=UTF8";
         pfmysql.process(sqlConnectionUrl, 
         		"/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/user-purchases.txt",
         		"/Users/huangsean/Coding/data/BigDataArchitectureAndAlgorithm/listing-segmented-shuffled-userpurchases-for-elasticsearch.txt");

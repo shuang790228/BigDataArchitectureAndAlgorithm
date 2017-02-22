@@ -47,7 +47,7 @@ public class ElasticsearchBasedKNN {
 			Iterator<JsonNode> iter = jnDocs.iterator();
 			while (iter.hasNext()) {
 				JsonNode jnDoc = iter.next();
-				// 由于搜索引擎中包含输入商品本身，排除它自己
+				// 由于搜索引擎中包含输入商品本身，排除它自己。也可以修改ElasticSearchEngineBasic的实现，使用filter来排除
 				if (jnDoc.get("_source").get("listing_id").asLong() == id) continue;
 				
 				String categoryName = jnDoc.get("_source").get("category_name").asText();

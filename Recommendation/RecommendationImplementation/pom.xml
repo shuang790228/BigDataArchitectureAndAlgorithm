@@ -24,6 +24,24 @@
     	<version>2.8.2</version>
 	</dependency>
 	
+	<!-- Mahout的依赖Jar包 -->
+	<!-- https://mvnrepository.com/artifact/org.apache.mahout/mahout-core -->
+	<dependency>
+	    <groupId>org.apache.mahout</groupId>
+	    <artifactId>mahout-core</artifactId>
+	    <version>0.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.mahout</groupId>
+		<artifactId>mahout-integration</artifactId>
+		<version>0.9</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.mahout</groupId>
+		<artifactId>mahout-math</artifactId>
+		<version>0.9</version>
+	</dependency>
+	
 	<!-- Elasticsearch的依赖Jar包 -->
 	<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/transport -->
 	<dependency>

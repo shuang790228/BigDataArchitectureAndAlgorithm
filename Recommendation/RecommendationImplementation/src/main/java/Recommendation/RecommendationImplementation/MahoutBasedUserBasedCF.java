@@ -32,7 +32,7 @@ public class MahoutBasedUserBasedCF {
 		
 		try {
 			model = new FileDataModel(new File(fileName));
-			is = new EuclideanDistanceSimilarity(model);	// 基于皮尔逊相关系数的相似度
+			is = new EuclideanDistanceSimilarity(model);	// 基于欧氏距离的相似度
 			un = new NearestNUserNeighborhood(5, is, model);		// 选取至多5个最近邻
 			gur = new GenericUserBasedRecommender(model, un, is);
 			
